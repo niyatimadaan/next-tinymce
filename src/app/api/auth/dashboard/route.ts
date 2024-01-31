@@ -14,6 +14,7 @@ export async function GET(req: Request){
   `;
     // console.log(response.rows[0]);
     // return response;
+    return NextResponse.json({ message: "success",body: response.rows});
   } catch (e) {
     // console.log({ e });
     return new NextResponse(JSON.stringify({ message: e }), {
@@ -21,5 +22,5 @@ export async function GET(req: Request){
       headers: { "content-type": "application/json" },
     });
   }
-  return NextResponse.json({ message: "success" });
+  
 };

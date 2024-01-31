@@ -1,9 +1,11 @@
 import { DocumentCardA } from "./documentCard";
 
 export interface DocumentA {
-  title: string;
-  description: string;
-  date: string;
+  access: string;
+  docname: string;
+  email: string;
+  id: string;
+  link: string;
 }
 
 interface DocumentsListProps {
@@ -14,7 +16,7 @@ export const DocList: React.FC<DocumentsListProps> = ({ documents }) => {
   return (
     <div className="flex flex-wrap">
       {documents.map((document) => (
-        <DocumentCardA key={document.title} {...document} />
+        <DocumentCardA key={document.docname} {...document} />
       ))}
     </div>
   );
