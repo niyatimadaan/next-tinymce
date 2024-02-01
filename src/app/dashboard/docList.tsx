@@ -12,11 +12,11 @@ interface DocumentsListProps {
   documents: DocumentA[];
 }
 
-export const DocList: React.FC<DocumentsListProps> = ({ documents }) => {
+export const DocList: React.FC<DocumentsListProps > = ({ documents }) => {
   return (
     <div className="flex flex-wrap">
       {documents.map((document) => (
-        <DocumentCardA key={document.docname} {...document} />
+        <DocumentCardA  key={document.id} {...document}/>
       ))}
     </div>
   );

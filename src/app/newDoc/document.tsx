@@ -12,8 +12,10 @@ import { generateClientDropzoneAccept } from "uploadthing/client";
 import { useUploadThing } from "@/utils/uploadthing";
 
 
-export default function TinymceEditor() {
+export default function TinymceEditor({ htmlData }: { htmlData: string }) {
   const [urls, seturls] = useState<string[]>([]);
+  const [text, setText] = useState<string>(htmlData);
+  const editorRef = useRef<TinyMCEEditor>();
 
   useEffect(() => {
     if (urls.length > 0) {
@@ -48,8 +50,7 @@ export default function TinymceEditor() {
     },
   );
 
-  const [text, setText] = useState<string>("<p>New editor.</p>");
-  const editorRef = useRef<TinyMCEEditor>();
+  
 
   const handleSubmit = async () => {
     if (editorRef.current) {
@@ -100,7 +101,7 @@ export default function TinymceEditor() {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-      <button onClick={handleSubmit}>Log editor content</button>
+      <button onClick={handleSubmit} >Save</button>
     </div>
   );
 }
