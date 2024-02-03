@@ -14,9 +14,9 @@ export default function DocOpenButton({ link }: { link: string }) {
         });
         const html = await response.text();
         console.log(html);
-        const res = await axios.put('https://httpbin.org/put', { html: html });
+        const res = await axios.put('https://httpbin.org/put/', { html: html });
 
-        router.push("/newDoc");
+        router.push("/newDoc/");
 
     };
     return (

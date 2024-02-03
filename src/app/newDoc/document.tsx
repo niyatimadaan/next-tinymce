@@ -3,12 +3,6 @@
 import { Editor } from '@tinymce/tinymce-react';
 import { useEffect, useRef, useState } from 'react';
 import { Editor as TinyMCEEditor } from 'tinymce';
-// import { UTApi } from 'uploadthing/server';
-import { utapi } from '@/app/api/uploadthing';
-import { v4 } from 'uuid';
-import { useDropzone } from "@uploadthing/react";
-import { generateClientDropzoneAccept } from "uploadthing/client";
-
 import { useUploadThing } from "@/utils/uploadthing";
 
 
@@ -19,18 +13,18 @@ export default function TinymceEditor({ htmlData }: { htmlData: string }) {
 
   useEffect(() => {
     if (urls.length > 0) {
-       fetch(`/api/auth/addDoc`, {
-         method: "POST",
-         body: JSON.stringify({
-           name: "Document",
-           email: "email",
-           link: urls[0],
-           access: "auth"
-         }),
-       });
+      fetch(`/api/auth/addDoc`, {
+        method: "POST",
+        body: JSON.stringify({
+          name: "Document",
+          email: "email",
+          link: urls[0],
+          access: "auth"
+        }),
+      });
     }
-   }, [urls]);
-   
+  }, [urls]);
+
 
   const { startUpload, permittedFileInfo } = useUploadThing(
     "textUploader",
@@ -50,14 +44,14 @@ export default function TinymceEditor({ htmlData }: { htmlData: string }) {
     },
   );
 
-  
+
 
   const handleSubmit = async () => {
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
       let htmlString = editorRef.current.getContent();
       let blob = new Blob([htmlString], { type: 'text/html' });
-      let file = new File([blob], "document.html", {type: blob.type});
+      let file = new File([blob], "document.html", { type: blob.type });
       let fileArray = [file];
       await startUpload(fileArray);
     }
