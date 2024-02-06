@@ -1,6 +1,5 @@
 import Link from "next/link";
 import DocDeleteButton from "./docDeleteButton";
-import DocOpenButton from "./docOpenButton";
 
 interface DocumentCardProps {
   access: string;
@@ -11,7 +10,7 @@ interface DocumentCardProps {
 }
 
 export const DocumentCardA: React.FC<DocumentCardProps> = ({ access, docname, email, id, link }) => {
-  const linkId = "/newDoc?" + link.slice(18,-5);
+  const linkId = "/newDoc?id=" + link.slice(18,-5);
   return (
     <div className="bg-white shadow-md p-4 rounded-md border border-gray-200 mr-4 mb-4 max-w-md">
       <h2 className="text-xl font-bold mb-6 overflow-ellipsis overflow-hidden whitespace-nowrap">{docname}</h2>
@@ -19,8 +18,7 @@ export const DocumentCardA: React.FC<DocumentCardProps> = ({ access, docname, em
       <p className="text-gray-500 mb-2">id : {id}</p>
       {/* <Link href ={{pathname: '/blog/[slug]', query: { slug: linkId }}} className="px-4">Edit</Link> */}
       <Link href ={linkId} className="px-4">Edit</Link>
-      {/* <DocOpenButton link={link}></DocOpenButton> */}
-      <DocDeleteButton link={link}></DocDeleteButton>
+      <DocDeleteButton link={link.slice(18,-5)}></DocDeleteButton>
     </div>
   );
 };

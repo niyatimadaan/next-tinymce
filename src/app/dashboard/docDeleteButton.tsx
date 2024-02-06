@@ -1,17 +1,12 @@
 import { useRouter } from "next/navigation";
 import { utapi } from "../api/uploadthing";
+import DeleteFunction from "./deleteFunction";
 
 
 export default function DocDeleteButton({ link }: { link: string }) {
+    const router = useRouter();
     const handleSubmit = async (link: string) => {
-        
-        const response = await fetch(`/api/auth/deleteDoc`, {
-            method: "POST",
-            body: JSON.stringify({
-                link: { link },
-            }),
-        });
-        const router = useRouter();
+        DeleteFunction(link);
         router.refresh();
     };
     return (

@@ -4,12 +4,14 @@ import { Editor } from '@tinymce/tinymce-react';
 import { useEffect, useRef, useState } from 'react';
 import { Editor as TinyMCEEditor } from 'tinymce';
 import { useUploadThing } from "@/utils/uploadthing";
+import DeleteFunction from '../dashboard/deleteFunction';
 
 
-export default function TinymceEditor({ htmlData }: { htmlData: string }) {
+export default function TinymceEditor({ htmlData , id }: { htmlData: string , id : string}) {
   const [urls, seturls] = useState<string[]>([]);
   const [text, setText] = useState<string>(htmlData);
   const editorRef = useRef<TinyMCEEditor>();
+  // debugger;
 
   useEffect(() => {
     if (urls.length > 0) {
@@ -47,6 +49,11 @@ export default function TinymceEditor({ htmlData }: { htmlData: string }) {
 
 
   const handleSubmit = async () => {
+    if(id != ""){
+      const link = "https://utfs.io/f/"+ id +".html";
+      console.log(link);
+      DeleteFunction(id);
+    }
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
       let htmlString = editorRef.current.getContent();
@@ -54,7 +61,7 @@ export default function TinymceEditor({ htmlData }: { htmlData: string }) {
       let file = new File([blob], "document.html", { type: blob.type });
       let fileArray = [file];
       await startUpload(fileArray);
-    }
+    } 
   };
 
   return (

@@ -1,32 +1,43 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from "next/compat/router";
 import TinymceEditor from './document';
+import { useEffect, useState } from 'react';
 
 export default function NewDocPage() {
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id');
   // debugger;
- const router = useRouter();
- const { id } = router.query;
- const [html, setHtml] = useState('');
- console.log(id);
+  const [html, setHtml] = useState('');
+  const [loading, setLoading] = useState(true);
 
- useEffect(() => {
-  debugger;
-    if (id) {
-      fetch(`https://utfs.io/f/${id}.html`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.text();
-        })
-        .then((data) => setHtml(data))
-        .catch((error) => {
-          console.error('There has been a problem with your fetch operation:', error);
-        });
+  useEffect(() => {
+    // debugger;
+    const fetchDoc = async () => {
+      setLoading(true);
+      try {
+        if (id) {
+          const response = fetch(`https://utfs.io/f/${id}.html`, {
+            method: "GET",
+          })
+          const re = await response;
+          const html = await re.text();
+          setHtml(html);
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
     }
- }, [id]);
 
- return <TinymceEditor htmlData={html} />;
+    fetchDoc();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Or any other loading indicator
+  }
+
+  return <TinymceEditor htmlData={html} id={id || ""} />;
 }
