@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Document Storage Application
 
-## Getting Started
+This application is a document storage system built with Next.js, Tailwind CSS, and integrated with the TinyMCE editor for rich text editing. It uses UploadThing for handling document storage and Vercel PostgreSQL for database management.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Rich Text Editing with TinyMCE
+- Responsive UI with Tailwind CSS
+- Document Storage via UploadThing
+- Database Management with Vercel PostgreSQL
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To set up the project locally, follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/document-storage.git
+   ```
 
-## Learn More
+2. Navigate to the project directory:
+   ```
+   cd document-storage
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Install dependencies:
+   ```
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Create a `.env` file with your environment variables, including:
+   - `UPLOADTHING_API_KEY`: Your UploadThing API key
+   - `VERCEL_POSTGRESQL_URL`: Your Vercel PostgreSQL connection string
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Start the development server:
+   ```
+   npm run dev
+   ```
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Once the application is running, you can create, edit, and store documents using the TinyMCE editor.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deployment
+
+To deploy the application to Vercel, follow these steps:
+
+1. Push your code to a Git repository (e.g., GitHub).
+2. Import the project into Vercel using the [Vercel Dashboard](https://vercel.com/dashboard).
+3. Configure your environment variables in the Vercel dashboard.
+4. Deploy the application.
+
+## Contributing
+
+If you find a bug or have a feature request, please open an issue. For other discussions, feel free to start a discussion.
