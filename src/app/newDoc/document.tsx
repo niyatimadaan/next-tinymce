@@ -65,7 +65,7 @@ export default function TinymceEditor({ htmlData , id }: { htmlData: string , id
   };
 
   return (
-    <div className='mt-20'>
+    <p className='mt-20'>
       <Editor
         apiKey="ebtmhhfkthrnkh4pgg688wablf9s5g49rei5p64zsxc66t3d"
         onInit={(evt, editor) => (editorRef.current = editor)}
@@ -102,7 +102,7 @@ export default function TinymceEditor({ htmlData , id }: { htmlData: string , id
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-      <button onClick={handleSubmit} >Save</button>
-    </div>
+      <button onClick={handleSubmit}  className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Save</button>
+    </p>
   );
 }

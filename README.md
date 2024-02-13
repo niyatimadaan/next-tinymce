@@ -15,12 +15,12 @@ To set up the project locally, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/document-storage.git
+   git clone https://github.com/niyatimadaan/next-tinymce.git
    ```
 
 2. Navigate to the project directory:
    ```
-   cd document-storage
+   cd next-tinymce
    ```
 
 3. Install dependencies:
@@ -49,6 +49,10 @@ To deploy the application to Vercel, follow these steps:
 2. Import the project into Vercel using the [Vercel Dashboard](https://vercel.com/dashboard).
 3. Configure your environment variables in the Vercel dashboard.
 4. Deploy the application.
+
+## Screen Recording
+
+Check out the `public` folder for a screen recordings of the project in action (`next-tinymce\public\project-screenshots`).
 
 ## Contributing
 
