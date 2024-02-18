@@ -5,11 +5,15 @@ import { useEffect, useRef, useState } from 'react';
 import { Editor as TinyMCEEditor } from 'tinymce';
 import { useUploadThing } from "@/utils/uploadthing";
 import DeleteFunction from '../dashboard/deleteFunction';
+import { useRouter } from 'next/navigation';
+import LoadingOverlay from '../components/loadingOverlay';
 
 
 export default function TinymceEditor({ htmlData , id }: { htmlData: string , id : string}) {
+  const router = useRouter();
   const [urls, seturls] = useState<string[]>([]);
   const [text, setText] = useState<string>(htmlData);
+  const [loading, setLoading] = useState<Boolean>(false);
   const editorRef = useRef<TinyMCEEditor>();
   // debugger;
 
@@ -49,6 +53,7 @@ export default function TinymceEditor({ htmlData , id }: { htmlData: string , id
 
 
   const handleSubmit = async () => {
+    setLoading(true);
     if(id != ""){
       const link = "https://utfs.io/f/"+ id +".html";
       console.log(link);
@@ -61,11 +66,19 @@ export default function TinymceEditor({ htmlData , id }: { htmlData: string , id
       let file = new File([blob], "document.html", { type: blob.type });
       let fileArray = [file];
       await startUpload(fileArray);
+      setLoading(false);
+      router.refresh();
+      router.push("/dashboard");
     } 
   };
 
   return (
     <p className='mt-20'>
+      {loading ? (
+          <LoadingOverlay />
+        ) : (
+          <></>
+      )}
       <Editor
         apiKey="ebtmhhfkthrnkh4pgg688wablf9s5g49rei5p64zsxc66t3d"
         onInit={(evt, editor) => (editorRef.current = editor)}
